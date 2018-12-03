@@ -1,0 +1,87 @@
+% !Mode:: "TeX:UTF-8"
+\section{\sihao\kai\quad {2.~文字排版}}% 设置目录中章节名、字体、字号及对齐
+%%%%%%%%%% 文字排版 %%%%%%%%%%
+%%%%%%%%%% 文字排版第一帧 %%%%%%%%%%
+\begin{frame}
+	\frametitle{\vskip -1.5ex\quad\hei  文字排版}
+	\kai\sihao 通过在文件前加字体和字号标识，可以调节演示文稿中的文字大小和字体（还包括\alert{颜色}设置等）\\
+	\song\yihao 一号宋体字\\
+	\fs\erhao\color{red} 二号红色仿宋体字\\
+	\kai\sanhao\color{blue} 三号蓝色楷体字\\
+	\hei\sihao\color{yellow} 四号黄色黑体字\\
+	\li\wuhao\color{green} 五号绿色隶书\\
+\end{frame}
+%%%%%%%%%% 文字排版第二帧 %%%%%%%%%%
+\begin{frame}
+	\frametitle{\vskip -1.5ex\quad\hei  条目排版示例一}
+	%\kai\sihao 使用条目可以清晰列出内容，普通条目为
+	\kai\sihao {无序列表 itemize 示例}
+	\begin{itemize}
+		\setbeamertemplate{itemize items}{\color{red}$\blacklozenge$}% 设置列表前的符号;
+		\item 我是谁？\cite{test-en}
+		      \setbeamertemplate{itemize items}{\color{blue}$\newmoon$}% 设置列表前的符号，凉凉说要圆的;
+		\item 我厉害吗？\cite{test-zh}
+		\item 我来自何方？\footnote{\kai\xiaowu 脚注1内容}
+		\item 我要去哪里？\footnote{\kai\xiaowu 脚注2内容}
+	\end{itemize}
+	\kai\sihao {有序列表 enumerate 示例}
+	\begin{enumerate}
+		\item 我是谁？\cite{Jianzhihong}
+		\item 我厉害吗？
+		\item 我来自何方？
+		\item 我要去哪里？
+	\end{enumerate}
+\end{frame}
+%%%%%%%%%% 文字排版第三帧 %%%%%%%%%%
+\begin{frame}
+	\frametitle{\vskip -1.5ex\quad\hei{条目排版示例二}}
+	\kai\sihao {描述列表 description 示例}
+	\begin{description}[<+->]% 可以表示\item<1->,\item<2->....的效果相当于每个\item后面都使用了<+->
+		\item[这是个梗] 我是谁？
+		\item[这是个梗] 我厉害吗？
+		\item[这是个梗] 我来自何方？
+		\item[这是个梗] 我要去哪里？
+	\end{description}
+\end{frame}
+%%%%%%%%%% 文字排版第四帧 %%%%%%%%%%
+\begin{frame}
+	\frametitle{\vskip -1.5ex\quad\hei  双栏条目}
+	\kai\sihao 双栏条目可以这样展示
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{itemize}
+			\item 我是谁？
+			\item 我来自何方？
+			\item 我要去哪里？
+			\item 什么鬼？
+		\end{itemize}
+		\column{0.5\textwidth}
+		\begin{itemize}
+			\item 这是第二栏
+			\item 显示在右边
+			\item 这是第二栏
+			\item 显示在右边
+		\end{itemize}
+	\end{columns}
+\end{frame}
+%%%%%%%%%% 文字排版第五帧 %%%%%%%%%%
+\begin{frame}
+	\frametitle{\vskip -1.5ex\quad\hei  双栏文字}
+	\kai\sihao
+	\begin{columns}
+		\column{0.5\textwidth}
+		这边是左边\\
+		这是左边第二行\\
+		这是左边第三行\\
+		\vskip 0.3cm
+		\centering 我开始居中对齐了
+		\flushleft 我又开始左对齐了
+		\column{0.5\textwidth}
+		这边是右边\\
+		这是右边第二行\\
+		这是右边第三行\\
+		\vskip 0.3cm
+		\centering 我开始居中对齐了
+		\flushright 我开始右对齐了
+	\end{columns}
+\end{frame}

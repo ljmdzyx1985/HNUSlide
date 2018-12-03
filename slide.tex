@@ -1,0 +1,182 @@
+%%%%%%%%%% !TEX program = xelatex %%%%%%%%%%
+% !TEX program = xelatex
+% !Mode:: "TeX:UTF-8"
+% \def\usewhat{dvipdfmx}                            % 定义编译方式 dvipdfmx 或者 pdflatex ，默认为 dvipdfmx
+% 方式编译，如果需要修改，只需改变花括号中的内容即可。
+\documentclass[xcolor=table]{beamer}% xcolor宏包的\rowcolor命令需要给宏包加table选项
+%%%%%%%%%% 幻灯片导言区 %%%%%%%%%%%
+\usepackage[UTF8,noindent]{ctex}% ctex只引入必要的中文，ctexcap还会翻译图表等环境名称
+%%%%%%%%%% 加入必须的宏包(如自己有特殊宏包需要可以加到这里) %%%%%%%%%%%
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{listings}% 使用listings包
+\usepackage{multirow}% 使用multirow宏包，使得表格可以合并多个row格
+\usepackage{booktabs}% 表格，横的粗线；\specialrule{1pt}{0pt}{0pt}
+\usepackage{multicol}% 多栏宏包
+\usepackage{wasysym}% 符号支持宏包
+\usepackage{amsthm}
+%%%%%%%%%% 加入Times New Roman字体的支持 %%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{mathptmx}
+\usepackage{colortbl}
+%%%%%%%%%% 书签中文支持 %%%%%%%%%%%
+\usepackage{hyperref}% 设置书签
+%\hypersetup{bookmarks, unicode}% 书签编码格式
+%%%%%%%%%% 参考文献支持 %%%%%%%%%%%
+\usepackage[backend=bibtex,sorting=none]{biblatex}% 参考文献
+\setbeamertemplate{bibliography item}{% 根据Bibtex中的Entrytype类型来选择图标
+	\ifboolexpr{ test {\ifentrytype{book}} or test {\ifentrytype{mvbook}}
+		or test {\ifentrytype{collection}} or test {\ifentrytype{mvcollection}}
+		or test {\ifentrytype{reference}} or test {\ifentrytype{mvreference}} }
+	{\setbeamertemplate{bibliography item}[book]}
+	{\ifentrytype{online}
+		{\setbeamertemplate{bibliography item}[online]}
+		{\setbeamertemplate{bibliography item}[article]}}%
+	\usebeamertemplate{bibliography item}}
+
+\defbibenvironment{bibliography}
+{\list{}
+	{\settowidth{\labelwidth}{\usebeamertemplate{bibliography item}}%
+		\setlength{\leftmargin}{\labelwidth}%
+		\setlength{\labelsep}{\biblabelsep}%
+		\addtolength{\leftmargin}{\labelsep}%
+		\setlength{\itemsep}{\bibitemsep}%
+		\setlength{\parsep}{\bibparsep}}}
+{\endlist}
+{\item}
+\addbibresource{slide.bib}% 参考文献数据库文件，放置到同级目录，名称是bib文件名，可以修改
+%%%%%%%%%% 去掉子图标号 %%%%%%%%%%%
+\makeatletter
+\renewcommand{\@thesubfigure}{\hskip\subfiglabelskip}
+\let\@@magyar@captionfix\relax
+\makeatother
+%%%%%%%%%% 设置自定义颜色 %%%%%%%%%%%
+\definecolor{hnuBlue}{rgb}{0.2,0.2,0.6}% PPT标题颜色
+\definecolor{tableHead}{rgb}{0.266,0.447,0.780}% 定义表格标题栏颜色
+\definecolor{tableDeep}{rgb}{0.851,0.886,0.953}% 定义表格中的浅蓝色，浅色为默认白色
+\setbeamercolor{title}{fg=black}% 设置首页标题字体颜色
+\setbeamercolor{section in toc}{fg=black}% 设置目录中显示字体颜色
+\setbeamertemplate{section in toc shaded}[default][50]% 设置目录中显示浅色字体颜色
+\setbeamertemplate{frametitle}[default][left]% 设置每帧PPT标题位置（偏左显示）
+\setbeamercolor{frametitle}{fg=hnuBlue}% 设置每帧PPT大标题颜色
+\setbeamercolor{framesubtitle}{fg=black}% 设置每帧PPT小标题颜色
+\setbeamercolor{navigation symbols}{ }% 取消导航条
+\setbeamertemplate{sidebar right}{ }
+%%%%%%%%%% 设置自定义页脚 %%%%%%%%%%%
+\setbeamertemplate{footline}{% 设置页脚显示，姓名、题目和日期都已经注释掉，需要可以自行开启
+\leavevmode%
+\hbox{%
+% 左侧1/3部分显示姓名信息
+\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}% 设置页脚长度、高度、深度等
+\usebeamerfont{author in head/foot}
+%\insertshortauthor% 插入姓名
+\end{beamercolorbox}
+% 中间1/3部分显示标题信息
+\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}  % 设置页脚长度、高度、深度等
+\usebeamerfont{title in head/foot}
+%\insertshorttitle% 插入题目
+\end{beamercolorbox}
+% 右侧1/3部分显示时间页码信息
+\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=3ex,right]{date in head/foot}   % 设置页脚长度、高度、深度等
+\usebeamerfont{date in head/foot}
+%\insertshortdate{}\hspace*{2em} % 插入日期
+\insertframenumber{} / \inserttotalframenumber\hspace*{4ex}% 插入页码(显示格式：当前页/总页码)
+\end{beamercolorbox}
+}
+\vskip0pt%
+}
+%%%%%%%%%% 字体及字号定义 %%%%%%%%%%%
+\usefonttheme{serif}  % 设置衬线字体
+\newcommand{\song}{\CJKfamily{zhsong}}                       % 宋体
+\newcommand{\fs}{\CJKfamily{zhfs}}                           % 仿宋体
+\newcommand{\kai}{\CJKfamily{zhkai}}                         % 楷体
+\newcommand{\hei}{\CJKfamily{zhhei}}                         % 黑体
+\newcommand{\li}{\CJKfamily{zhli}}                           % 隶书
+\newcommand{\fssishi}{\fontsize{40pt}{40pt}\selectfont}    % 40pt, 单倍行距
+\newcommand{\fssanliu}{\fontsize{36pt}{36pt}\selectfont}   % 36pt, 单倍行距
+\newcommand{\fssaner}{\fontsize{32pt}{32pt}\selectfont}    % 32pt, 单倍行距
+\newcommand{\fserba}{\fontsize{28pt}{28pt}\selectfont}     % 28pt, 单倍行距
+\newcommand{\yihao}{\fontsize{26pt}{26pt}\selectfont}      % 一号, 单倍行距
+\newcommand{\xiaoyi}{\fontsize{24pt}{24pt}\selectfont}     % 小一, 单倍行距
+\newcommand{\erhao}{\fontsize{22pt}{22pt}\selectfont}      % 二号, 单倍行距
+\newcommand{\xiaoer}{\fontsize{18pt}{18pt}\selectfont}     % 小二, 单倍行距
+\newcommand{\sanhao}{\fontsize{16pt}{16pt}\selectfont}     % 三号, 单倍行距
+\newcommand{\xiaosan}{\fontsize{15pt}{15pt}\selectfont}    % 小三, 单倍行距
+\newcommand{\sihao}{\fontsize{14pt}{14pt}\selectfont}      % 四号, 单倍行距
+\newcommand{\xiaosi}{\fontsize{12.5pt}{12.5pt}\selectfont} % 小四, 单倍行距
+\newcommand{\wuhao}{\fontsize{10.5pt}{10.5pt}\selectfont}  % 五号, 单倍行距
+\newcommand{\xiaowu}{\fontsize{9pt}{9pt}\selectfont}       % 小五, 单倍行距
+\newcommand{\liuhao}{\fontsize{8pt}{8pt}\selectfont}       % 小五, 单倍行距
+\newcommand{\bz}{\color{white}}                            % 白色字
+%%%%%%%%%% 设置局部字体和颜色 %%%%%%%%%%
+\usepackage[labelfont=bf,textfont={bf}]{caption}% 设置caption样式
+\setbeamerfont{caption}{size=\xiaosi}% 设置caption字号为小四
+\setbeamerfont{date in head/foot}{size=\xiaowu}% 设置页码字体为五号
+\setbeamercolor{date in head/foot}{fg=black}% 设置页码字体颜色为黑色
+%%%%%%%%%% 设置默认全屏显示 %%%%%%%%%%
+\hypersetup{pdfpagemode=FullScreen}%自动全屏
+%%%%%%%%%% 在每一个章标题前显示文稿目录 %%%%%%%%%%
+\AtBeginSection[]% 在每一章前显示文稿目录，并高亮当前章标题，此处可自行修改
+{
+\begin{frame}<beamer>
+% 不要问我为啥有个\vskip，只有这样标题的位置才正常，大哥的模板，大哥的锅，找他去！
+	\frametitle{\vskip -1.5ex\hei\quad 主要内容}
+	\tableofcontents[currentsection]
+\end{frame}
+}
+%%%%%%%%%% 设置Block环境 %%%%%%%%%%
+\setbeamertemplate{blocks}[rounded][shadow=true]% 圆角带阴影的矩形
+\setbeamercolor{block title}{fg=yellow,bg=gray!50!black}% 设置标题的字体颜色和背景颜色
+\setbeamercolor{block body}{bg=lightgray}% 框内字体颜色和背景颜色
+%%%%%%%%%% 演示文稿首页格式 %%%%%%%%%%
+\include{preface/titlepage}% 包含标题页
+%%%%%%%%%% 标题页展示内容 %%%%%%%%%%
+\title{\LaTeX 使用说明}% 主标题
+\subtitle{使用~Beamer~制作演示文档}% 副标题
+\author{姓名：大~~~~哥 \\
+	\vskip 0.1cm
+	导师：滕嗲嗲~教授  \\% 湖南大学明星教授：http://blog.sina.com.cn/cn8823333
+	\vskip 0.1cm
+	专业：控制科学与工程}% 演示者姓名、导师等信息
+%\institute{湖南大学电气于信息工程学院}
+\date{2018年9月27日}% 插入演示时间，\today为编译日期
+%%%%%%%%%% 组织PPT主要内容 %%%%%%%%%%
+\begin{document}
+%%%%%%%%%% 设置标题页文稿背景 %%%%%%%%%%
+\usebackgroundtemplate{% 此处设置标题页背景图片
+	\includegraphics[width=\paperwidth,height=\paperheight]{img/title.png}
+}
+%%%%%%%%%% 插入演示文稿标题页 %%%%%%%%%%
+\thispagestyle{empty}% 不想首页显示页码，摩羯座就是有强迫症！！！！！！
+\frame{\titlepage}
+%%%%%%%%%% 设置演示文稿正文背景 %%%%%%%%%%
+\usebackgroundtemplate{% 此处设置演示页背景图片
+	\includegraphics[width=\paperwidth,height=\paperheight]{img/content.png}
+}
+%%%%%%%%%% 演示文稿主要内容（不需要注释掉就好） %%%%%%%%%%
+\include{body/contents}       % 目录页
+\include{body/intros}         % 概述
+\include{body/word}           % 文字排版
+\include{body/equations}      % 公式编辑
+\include{body/figures}        % 图片处理
+\include{body/tables}         % 表格处理
+\include{body/other}          % 其他
+\include{body/conclusion}     % 总结
+\include{body/ref}            % 参考文献
+%%%%%%%%%% 演示文稿结束页背景 %%%%%%%%%%
+\usebackgroundtemplate{% 此处设置结束页页背景图片
+	\includegraphics[width=\paperwidth,height=\paperheight]{img/end.png}
+}
+%%%%%%%%%% 演示文稿结束页内容 %%%%%%%%%%
+\begin{frame}
+	\centering
+	\Huge\kai\textcolor{hnuBlue}{谢谢各位老师与同学！\\
+		\vskip 0.1cm
+		敬请指导！}
+\end{frame}
+\end{document}

@@ -1,0 +1,23 @@
+% !Mode:: "TeX:UTF-8"
+%%%%%%%%%% 演示文稿标题页格式 %%%%%%%%%%%
+\defbeamertemplate*{title page}{customized}[1][]
+{
+	\centering
+	\erhao \hei \inserttitle\par 										% 主标题字体、字号及颜色
+	\bigskip
+	\xiaoer \kai \textcolor[rgb]{0.2,0.2,0.6} \insertsubtitle\par 		% 副标题字体、字号及颜色
+  	\bigskip
+  	\bigskip
+  	\begin{flushleft}% 多行文本左对齐
+  		\hangafter 0
+  		\hangindent 4.9em
+  		\noindent
+  		\sihao \kai \insertauthor\par 									% 作者信息字体、字号及颜色
+  	\end{flushleft}
+%  		\usebeamerfont{institute}\insertinstitute\par 					% 机构字体采用beamer字体
+  	%\centering
+  	\bigskip
+  	\xiaosi \kai \insertdate\par 										% 日期字体、字号及颜色
+	%\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
+}
+

@@ -1,0 +1,55 @@
+% !Mode:: "TeX:UTF-8"
+\section{\sihao\kai\quad {5.~表格处理}}% 章节号及章节名，设置字体字号及对齐
+%%%%%%%%%% 表格处理 %%%%%%%%%%
+%%%%%%%%%% 表格处理第一帧 %%%%%%%%%%
+\begin{frame}
+	\frametitle{\vskip -1.5ex\hei\quad 数据表格}
+	\begin{table}[htbp]
+		\caption{基波频率变化时不同算法频率测量相对误差}
+		\centering\kai
+		%\rowcolors{2}{tableDeep}{white}
+		\begin{tabular}{ccccc}
+			\toprule[1.5pt]
+			%\rowcolor{tableHead}\bz 频率(Hz) & \bz FFT(\%)      & \bz 算法1(\%) & \bz 算法2(\%) & \bz 算法3(\%)   \\
+			                        频率(Hz)   &  FFT(\%)        &   算法1(\%)    &   算法2(\%)    &   算法3(\%)   \\
+			\midrule[1pt]
+			49.5                              & 2.56E+02         & 0.0108        & 0.0091        & \textbf{0.0006} \\
+			49.6                              & 2.02E+02         & 0.0077        & 0.0052        & 0.0004          \\
+			49.7                              & 1.49E+02         & 0.0051        & 0.0024        & 0.0003          \\
+			49.8                              & 9.73E+01         & 0.0032        & 0.0024        & 0.0002          \\
+			49.9                              & 4.74E+01         & 0.0017        & 0.0001        & 9.56E-05        \\
+			50.0                              & \alert{1.35E-11} & 0.0007        & 3.4123        & 4.01E-05        \\
+			50.1                              & 4.45E+01         & 0.7590        & 3.2765        & 0.0578          \\
+			50.2                              & 8.55E+01         & 0.7224        & 3.1330        & 0.0553          \\
+			50.3                              & 1.23E+02         & 0.6845        & 2.9825        & 0.0527          \\
+			\bottomrule[1.5pt]
+		\end{tabular}
+	\end{table}
+\end{frame}
+%%%%%%%%%% 表格处理第二帧 %%%%%%%%%%
+\begin{frame}
+\frametitle{\vskip -1.5ex\hei\quad 数据表格}
+\begin{table}[htbp]
+	\renewcommand\arraystretch{1.25}% 是表格里的内容可以看起来居中
+	%\renewcommand\arraystretch{1.1}
+	\caption{基波频率变化时不同算法频率测量相对误差}
+	\centering\kai
+	% \rowcolors [<commands>]{<row>}{<odd-row color >}{<even-row color >}
+	% \rowcolors{1}{blue!20}{blue!10} 表示从第一行开始，奇数行为蓝色20%，偶数行为蓝色10%。
+	\rowcolors{2}{tableDeep}{white}
+	\begin{tabular}{ccccc}
+		\rowcolor{tableHead}\bz  频率(Hz)  & \bz FFT(\%)     & \bz 算法1(\%)  & \bz 算法2(\%)  & \bz 算法3(\%)   \\
+		49.5                              & 2.56E+02                   & 0.0108           & 0.0091        & \textbf{0.0006}\\
+		49.6                              & 2.02E+02         & 0.0077        & 0.0052        & 0.0004          \\
+		49.7                              & 1.49E+02         & 0.0051        & 0.0024        & 0.0003          \\
+		49.8                              & 9.73E+01         & 0.0032        & 0.0024        & 0.0002          \\
+		49.9                              & 4.74E+01         & 0.0017        & 0.0001        & 9.56E-05        \\
+		50.0                              & \alert{1.35E-11} & 0.0007        & 3.4123        & 4.01E-05        \\
+		50.1                              & 4.45E+01         & 0.7590        & 3.2765        & 0.0578          \\
+		50.2                              & 8.55E+01         & 0.7224        & 3.1330        & 0.0553          \\
+		50.3                              & 1.23E+02         & 0.6845        & 2.9825        & 0.0527          \\
+	\end{tabular}
+\end{table}
+\end{frame}
+
+
